@@ -43,23 +43,23 @@ use std::ptr::NonNull;
 /// The various kinds of errors, which can be returned by any of the interfaces.
 #[derive(Eq, PartialEq, Debug, Clone)]
 pub enum Error {
-    ParsingFailure,
-    InstantiationFailure,
+    MalformedModule(String),
+    InvalidModule(String),
+    InstantiationFailed(String),
+    Other(String),
     FunctionNotFound,
     ArgumentCountMismatch,
-    Trapped,
-    Custom(String),
 }
 
 impl From<String> for Error {
     fn from(error: String) -> Self {
-        Error::Custom(error)
+        Error::Other(error)
     }
 }
 
 impl From<&str> for Error {
     fn from(error: &str) -> Self {
-        Error::Custom(error.to_string())
+        Error::Other(error.to_string())
     }
 }
 
