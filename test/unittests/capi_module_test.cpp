@@ -9,8 +9,11 @@
 
 using namespace fizzy::test;
 
+namespace
+{
 /// Represents an invalid/mocked pointer to a host function for tests without execution.
-static constexpr FizzyExternalFn NullFn = nullptr;
+constexpr FizzyExternalFn NullFn = nullptr;
+}  // namespace
 
 TEST(capi_module, get_function_type)
 {
